@@ -1,0 +1,25 @@
+# ninja log v5
+26	906	7518503354099047	CMakeFiles/untitled.dir/main.cpp.obj	eefafddcadd467e7
+26	1589	7518503012313455	CMakeFiles/untitled.dir/charCreatorSource.cpp.obj	f0d15eaae232c616
+907	1067	7518503355670491	untitled.exe	6da3f979d80419b1
+18	999	7518506414413547	CMakeFiles/untitled.dir/charCreatorSource.cpp.obj	f0d15eaae232c616
+1000	1158	7518506415975208	untitled.exe	6da3f979d80419b1
+35	1179	7518514070920819	CMakeFiles/untitled.dir/main.cpp.obj	eefafddcadd467e7
+43	1256	7518514071701605	CMakeFiles/untitled.dir/charCreatorSource.cpp.obj	f0d15eaae232c616
+1256	1469	7518514073819963	untitled.exe	6da3f979d80419b1
+121	2092	7520181256982230	CMakeFiles/untitled.dir/charCreatorSource.cpp.obj	f0d15eaae232c616
+105	2097	7520181257012291	CMakeFiles/untitled.dir/main.cpp.obj	eefafddcadd467e7
+2097	2991	7520181265893120	untitled.exe	6da3f979d80419b1
+104	2396	7524552079171626	CMakeFiles/untitled.dir/main.cpp.obj	eefafddcadd467e7
+117	2506	7524552080175208	CMakeFiles/untitled.dir/charCreatorSource.cpp.obj	f0d15eaae232c616
+2506	3325	7524552088213384	untitled.exe	6da3f979d80419b1
+40	1174	7524609776505963	CMakeFiles/untitled.dir/charCreatorSource.cpp.obj	f0d15eaae232c616
+13	889	7524610817210063	CMakeFiles/untitled.dir/main.cpp.obj	eefafddcadd467e7
+890	1217	7524610820453642	untitled.exe	6da3f979d80419b1
+14	992	7524611191289538	CMakeFiles/untitled.dir/charCreatorSource.cpp.obj	f0d15eaae232c616
+993	1152	7524611192860474	untitled.exe	6da3f979d80419b1
+11	978	7524611767051402	CMakeFiles/untitled.dir/charCreatorSource.cpp.obj	f0d15eaae232c616
+979	1126	7524611768505769	untitled.exe	6da3f979d80419b1
+50	2079	7524655957785033	CMakeFiles/untitled.dir/main.cpp.obj	eefafddcadd467e7
+62	2191	7524655958875774	CMakeFiles/untitled.dir/charCreatorSource.cpp.obj	f0d15eaae232c616
+2192	2611	7524655963008187	untitled.exe	6da3f979d80419b1
