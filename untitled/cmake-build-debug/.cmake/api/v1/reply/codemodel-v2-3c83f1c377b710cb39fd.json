@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "untitled::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-untitled-Debug-97c3c5d039d9904d2f78.json",
+					"jsonFile" : "target-untitled-Debug-b3aaa5cf3e60c3e6976d.json",
 					"name" : "untitled",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/rrmim/CLionProjects/untitled/cmake-build-debug-coverage",
-		"source" : "C:/Users/rrmim/CLionProjects/untitled"
+		"build" : "C:/Users/rrmim/CLionProjects/CharCreatMkII/untitled/cmake-build-debug",
+		"source" : "C:/Users/rrmim/CLionProjects/CharCreatMkII/untitled"
 	},
 	"version" : 
 	{

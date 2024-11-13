@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/rrmim/CLionProjects/untitled/cmake-build-debug-coverage"
+			"value" : "c:/Users/rrmim/CLionProjects/CharCreatMkII/untitled/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -203,7 +203,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "--coverage"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS_DEBUG",
@@ -347,7 +347,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "--coverage"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_C_FLAGS_DEBUG",
@@ -575,7 +575,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/rrmim/CLionProjects/untitled/cmake-build-debug-coverage/CMakeFiles/pkgRedirects"
+			"value" : "C:/Users/rrmim/CLionProjects/CharCreatMkII/untitled/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -647,7 +647,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/rrmim/CLionProjects/untitled"
+			"value" : "C:/Users/rrmim/CLionProjects/CharCreatMkII/untitled"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1291,7 +1291,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/rrmim/CLionProjects/untitled/cmake-build-debug-coverage"
+			"value" : "C:/Users/rrmim/CLionProjects/CharCreatMkII/untitled/cmake-build-debug"
 		},
 		{
 			"name" : "untitled_IS_TOP_LEVEL",
@@ -1315,7 +1315,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/rrmim/CLionProjects/untitled"
+			"value" : "C:/Users/rrmim/CLionProjects/CharCreatMkII/untitled"
 		}
 	],
 	"kind" : "cache",
