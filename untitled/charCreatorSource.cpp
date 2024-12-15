@@ -1,15 +1,11 @@
 #include <iostream>
-#include "charCreator.h"
+#include "CCHead.h"
 
 using namespace std;
 
 
-void initialize() {
-    // for (int g = 0; g < 6; g++) {
-    //     abilities[g] = abilities[g];
-    // }
+clAtt *initClasses() {
     for (int h = 0; h < totSkill; h++) {
-        //skArr[h].name = skNames[h];
         skArr[h].bonus = 0;
         if (h == 0) {
             skArr[h].assAbil = abilities[0];
@@ -23,104 +19,103 @@ void initialize() {
             skArr[h].assAbil = abilities[5];
         }
     }
-    // for (int i = 0; i < totAncs; i++) {
-    //     ancArr[i].name = ancNames[i];
-    // }
-    // for (int k = 0; k < totBgs; k++) {
-    //     bgArr[k].name = bgNames[k];
-    // }
 
-    initFighter(&classArr[1]);
-    initCleric(&classArr[0]);
-    initRogue(&classArr[2]);
-    initElf(&ancArr[1]);
-    initDwarf(&ancArr[2]);
-    initHuman(&ancArr[0]);
+    skill fighterSkills[8] = {skArr[1], skArr[10], skArr[0], skArr[5], skArr[11], skArr[16], skArr[12], skArr[13]};
+    skill clericSkills[5] = {skArr[5], skArr[10], skArr[11], skArr[15], skArr[16]};
+    skill rogueSkills[11] = {
+        skArr[1], skArr[0], skArr[14], skArr[11], skArr[16], skArr[6], skArr[12], skArr[17], skArr[15], skArr[9],
+        skArr[3]
+    };
+    clAtt Fighter(
+        "Fighter",
+        fighterSkills,
+        true, // martProf
+        true, // simpProf
+        true, // lightProf
+        true, // medProf
+        true, // heavProf
+        true, // shieldProf
+        false, // halfCast
+        false, // fullCast
+        abilities[0], // primaryAb
+        abilities[0], // saveOne
+        abilities[2] // saveTwo
+    );
+    clAtt Cleric(
+        "Cleric",
+        clericSkills,
+        false,
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        abilities[4],
+        abilities[4],
+        abilities[5]
+    );
+    clAtt Rogue(
+        "Rogue",
+        rogueSkills,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        abilities[1],
+        abilities[1],
+        abilities[3]
+    );
+    auto *classArr = new clAtt[totClss]{Fighter, Cleric, Rogue};
+    return classArr;
 }
 
-void initFighter(clAtt *Fighter) {
-    Fighter->name = "Fighter";
-    Fighter->primaryAb = abilities[0];
-    Fighter->possSkills[0] = Acrobatics;
-    Fighter->possSkills[1] = AnimalHandling;
-    Fighter->possSkills[2] = Athletics;
-    Fighter->possSkills[3] = History;
-    Fighter->possSkills[4] = Insight;
-    Fighter->possSkills[5] = Intimidation;
-    Fighter->possSkills[6] = Perception;
-    Fighter->possSkills[7] = Survival;
-    Fighter->martProf = true;
-    Fighter->simpProf = true;
-    Fighter->lightProf = true;
-    Fighter->medProf = true;
-    Fighter->heavProf = true;
-    Fighter->shieldProf = true;
-    Fighter->saveOne = abilities[0];
-    Fighter->saveTwo = abilities[2];
+ancestry *initAncs() {
+    ancestry Human = {"Human", abilities[0], abilities[1], false, 30, 0, 0, &langs[0], true};
+    ancestry Elf = {"Elf", abilities[1], abilities[3], true, 35, 0, 0, &langs[1], false};
+    ancestry Dwarf = {"Dwarf", abilities[0], abilities[2], true, 25, 0, 0, &langs[8], false};
+    auto *ancArr = new ancestry[totAncs]{Human, Elf, Dwarf};
+    return ancArr;
 }
 
-void initCleric(clAtt *Cleric) {
-    Cleric->name = "Cleric";
-    Cleric->primaryAb = abilities[4];
-    Cleric->possSkills[0] = History;
-    Cleric->possSkills[1] = Insight;
-    Cleric->possSkills[2] = Medicine;
-    Cleric->possSkills[3] = Persuasion;
-    Cleric->possSkills[4] = Religion;
-    Cleric->simpProf = true;
-    Cleric->lightProf = true;
-    Cleric->medProf = true;
-    Cleric->shieldProf = true;
-    Cleric->fullCast = true;
-    Cleric->saveOne = abilities[4];
-    Cleric->saveTwo = abilities[5];
+background *initBG() {
+    background Acolyte = {"Acolyte", skArr[8], skArr[10], "You're an acolyte.", "Shrine of the gods"};
+    background Criminal = {"Criminal", skArr[14], skArr[3], "You're a criminal.", "Criminal contact"};
+    background Gladiator = {"Gladiator", skArr[1], skArr[16], "You're a gladiator.", "Arena fighter"};
+    background Noble = {"Noble", skArr[5], skArr[17], "You're a noble.", "Position of privilege"};
+    background Outlander = {"Outlander", skArr[0], skArr[13], "You're an outlander.", "Wanderer"};
+    background Sage = {"Sage", skArr[4], skArr[5], "You're a sage.", "Researcher"};
+    background Urchin = {"Urchin", skArr[3], skArr[2], "You're an urchin.", "City secrets"};
+    auto *bgArr = new background[totBgs]{Acolyte, Criminal, Gladiator, Noble, Outlander, Sage, Urchin};
+    return bgArr;
 }
-
-void initRogue(clAtt *Rogue) {
-    Rogue->name = "Rogue";
-    Rogue->primaryAb = abilities[1];
-    Rogue->possSkills[0] = Acrobatics;
-    Rogue->possSkills[1] = Athletics;
-    Rogue->possSkills[2] = Deception;
-    Rogue->possSkills[3] = Insight;
-    Rogue->possSkills[4] = Intimidation;
-    Rogue->possSkills[5] = Investigation;
-    Rogue->possSkills[6] = Perception;
-    Rogue->possSkills[7] = Performance;
-    Rogue->possSkills[8] = Persuasion;
-    Rogue->possSkills[9] = SleightOfHand;
-    Rogue->possSkills[10] = Stealth;
-    Rogue->martProf = true;
-    Rogue->simpProf = true;
-    Rogue->lightProf = true;
-    Rogue->medProf = true;
-    Rogue->heavProf = true;
-    Rogue->saveOne = abilities[1];
-    Rogue->saveTwo = abilities[3];
-}
-
-void initElf(ancestry *elf) {
-    elf->name = "Elf";
-    elf->abOne = abilities[1];
-    elf->abTwo = abilities[3];
-    elf->movSpeed = 35;
-    elf->dVis = true;
-}
-
-void initDwarf(ancestry *dwarf) {
-    dwarf->name = "Dwarf";
-    dwarf->abOne = abilities[0];
-    dwarf->abTwo = abilities[2];
-    dwarf->movSpeed = 25;
-    dwarf->dVis = true;
-}
-
-void initHuman(ancestry *human) {
-    human->name = "Human";
-    human->humAB = true;
-    human->movSpeed = 30;
-    human->dVis = false;
-}
+// void initElf(ancestry *elf) {
+//     elf->name = "Elf";
+//     elf->abOne = abilities[1];
+//     elf->abTwo = abilities[3];
+//     elf->movSpeed = 35;
+//     elf->dVis = true;
+// }
+//
+// void initDwarf(ancestry *dwarf) {
+//     dwarf->name = "Dwarf";
+//     dwarf->abOne = abilities[0];
+//     dwarf->abTwo = abilities[2];
+//     dwarf->movSpeed = 25;
+//     dwarf->dVis = true;
+// }
+//
+// void initHuman(ancestry *human) {
+//     human->name = "Human";
+//     human->humAB = true;
+//     human->movSpeed = 30;
+//     human->dVis = false;
+// }
 
 string getName() {
     string pName;
@@ -151,7 +146,7 @@ string getClDescription(int usrIn) {
     return "This is a class description.\n";
 }
 
-ancestry *getAncestry() {
+ancestry *getAncestry(ancestry *ancArr) {
     int usrIn;
     bool valid = false;
     for (int i = 0; i < totAncs; i++) {
@@ -177,7 +172,7 @@ bool checkVowel(const string &check) {
             x == 'A' || x == 'I' || x == 'O' || x == 'E' || x == 'U');
 }
 
-clAtt *getClass() {
+clAtt *getClass(clAtt *classArr) {
     int usrIn;
     bool valid = false;
     yesNo = 0;
@@ -212,7 +207,7 @@ clAtt *getClass() {
     return &classArr[usrIn];
 }
 
-background *getBackground() {
+background *getBackground(background *bgArr) {
     int usrIn;
     bool valid = false;
     for (int i = 0; i < totBgs; i++) {
@@ -234,7 +229,7 @@ background *getBackground() {
 
 void abilityChange() {
     int scoreToChange = 0;
-    int amtToAdd = 0;
+    int usrIn = 0;
     cout << "Which ability score would you like to change?\n"
             << "1: Strength\n2: Dexterity\n3: Constitution\n4: Intelligence\n5: Wisdom\n6: Charisma.\n"
             << "Please enter the number next to the score you wish to change.\n";
@@ -245,78 +240,78 @@ void abilityChange() {
     }
     scoreToChange -= 1;
 
-    cout << "Would you like to add or subtract points?\n1: Add\n2: Subtract\n";
-    cin >> yesNo;
-    bool valid = false;
-    bool add = false;
-    while (!valid) {
-        switch (yesNo) {
-            case 1:
-                add = true;
-                valid = true;
-                break;
-            case 2:
-                add = false;
-                valid = true;
-                break;
-            default:
-                cout << "Invalid response, please enter 1 for Add or 2 for Subtract.\n";
-                cin >> yesNo;
-                break;
-        }
+   cout << "Would you like to add or subtract points?\n1: Add\n2: Subtract\n";
+cin >> yesNo;
+bool valid = false;
+bool add = false;
+while (!valid) {
+    switch (yesNo) {
+        case 1:
+            add = true;
+            valid = true;
+            break;
+        case 2:
+            add = false;
+            valid = true;
+            break;
+        default:
+            cout << "Invalid response, please enter 1 for Add or 2 for Subtract.\n";
+            cin >> yesNo;
+            break;
     }
-    if (add) {
-        cout << "How many points would you like to add to " << abilities[scoreToChange].name << "? \n";
-        cout << "You have " << pointsLeft << " points remaining.\n";
-        cin >> amtToAdd;
+}
+if (add) {
+    cout << "How many points would you like to add to " << abilities[scoreToChange].name << "? \n";
+    cout << "You have " << pointsLeft << " points remaining.\n";
+    cin >> amtToAdd;
 
-        if (player.scoreArr[scoreToChange] + amtToAdd > 13) {
-            while (((player.scoreArr[scoreToChange] + amtToAdd) - 13) % 2 != 0) {
-                cout << "Raising a score above 13 requires 2 points each.\n";
-                cout << "If you'd like to raise your " << abilities[scoreToChange].name << " to " << player.scoreArr[
-                            scoreToChange] + ((amtToAdd / 2) + 1)
-                        << ",\nyou'll need to add one more point.\n";
-                cout << "Your " << abilities[scoreToChange].name << " score is " << player.scoreArr[scoreToChange] <<
-                        ". You have "
-                        << pointsLeft << " points remaining.\n";
-                cout << "How much would you like to add?\n";
-                cin >> amtToAdd;
-            }
-            int twoPnts = (player.scoreArr[scoreToChange] + amtToAdd) - 13;
-            amtToAdd -= twoPnts;
-            amtToAdd += twoPnts / 2;
-        }
-        while (player.scoreArr[scoreToChange] + amtToAdd > 16) {
-            cout << "Ability scores are capped at 16 during character creation.\n";
+    if (player.scoreArr[scoreToChange] + amtToAdd > 13) {
+        while (((player.scoreArr[scoreToChange] + amtToAdd) - 13) % 2 != 0) {
+            cout << "Raising a score above 13 requires 2 points each.\n";
+            cout << "If you'd like to raise your " << abilities[scoreToChange].name << " to " << player.scoreArr[
+                        scoreToChange] + ((amtToAdd / 2) + 1)
+                    << ",\nyou'll need to add one more point.\n";
             cout << "Your " << abilities[scoreToChange].name << " score is " << player.scoreArr[scoreToChange] <<
                     ". You have "
                     << pointsLeft << " points remaining.\n";
-            cout << "How many points would you like to add?";
-            amtToAdd = 0;
+            cout << "How much would you like to add?\n";
             cin >> amtToAdd;
         }
-        player.scoreArr[scoreToChange] += amtToAdd;
-        pointsLeft -= amtToAdd;
-        cout << "Your new " << abilities[scoreToChange].name << " score is " << player.scoreArr[scoreToChange] <<
-                ". You have "
-                << pointsLeft << " points remaining.\n";
-    } else {
-        cout << "How many points would you like to subtract from " << abilities[scoreToChange].name << "? \n";
-        cout << "You have " << pointsLeft << " points remaining.\n";
-        cin >> amtToAdd;
-        int twoPnts = 0;
-        if (player.scoreArr[scoreToChange] > 13) {
-            for (int i = player.scoreArr[scoreToChange]; i > 13; i--) {
-                twoPnts++;
-            }
-        }
-        player.scoreArr[scoreToChange] -= amtToAdd;
-        player.scoreArr[scoreToChange] -= twoPnts;
-        pointsLeft += amtToAdd;
-        cout << "Your new " << abilities[scoreToChange].name << " score is " << player.scoreArr[scoreToChange] <<
-                ". You have "
-                << pointsLeft << " points remaining.\n";
+        int twoPnts = (player.scoreArr[scoreToChange] + amtToAdd) - 13;
+        amtToAdd -= twoPnts;
+        amtToAdd += twoPnts / 2;
     }
+    while (player.scoreArr[scoreToChange] + amtToAdd > 16) {
+        cout << "Ability scores are capped at 16 during character creation.\n";
+        cout << "Your " << abilities[scoreToChange].name << " score is " << player.scoreArr[scoreToChange] <<
+                ". You have "
+                << pointsLeft << " points remaining.\n";
+        cout << "How many points would you like to add?";
+        amtToAdd = 0;
+        cin >> amtToAdd;
+    }
+    player.scoreArr[scoreToChange] += amtToAdd;
+    pointsLeft -= amtToAdd;
+    cout << "Your new " << abilities[scoreToChange].name << " score is " << player.scoreArr[scoreToChange] <<
+            ". You have "
+            << pointsLeft << " points remaining.\n";
+} else {
+    cout << "How many points would you like to subtract from " << abilities[scoreToChange].name << "? \n";
+    cout << "You have " << pointsLeft << " points remaining.\n";
+    cin >> amtToAdd;
+    int twoPnts = 0;
+    if (player.scoreArr[scoreToChange] > 13) {
+        for (int i = player.scoreArr[scoreToChange]; i > 13; i--) {
+            twoPnts++;
+        }
+    }
+    player.scoreArr[scoreToChange] -= amtToAdd;
+    player.scoreArr[scoreToChange] -= twoPnts;
+    pointsLeft += amtToAdd;
+    cout << "Your new " << abilities[scoreToChange].name << " score is " << player.scoreArr[scoreToChange] <<
+            ". You have "
+            << pointsLeft << " points remaining.\n";
+}
 }
 
 
@@ -331,9 +326,9 @@ void assignSkillBonuses(sheet *player) {
 void chooseProficiency(sheet *player) {
     auto *choices = static_cast<skill *>(malloc(sizeof(player->pcClass.possSkills)));
     for (int i = 0; i < (sizeof(player->pcClass.possSkills)) / (sizeof(skill)); i++) {
-        cout << i + 1 << ": " << choices[i].name << "\n";
-    }
-
+       if (!player->pcSkills[i].prof) cout << i + 1 << ": " << choices[i].name << "\n";
+       else cout << i + 1 << ": " << choices[i].name << " (Already Proficient From Background)\n";
+       }
     int usrIn;
     bool valid = false;
     while (!valid) {
@@ -347,7 +342,14 @@ void chooseProficiency(sheet *player) {
         } else {
             valid = true;
         }
+
+        if (player->pcSkills[usrIn - 1].prof) {
+            cout << "You are already proficient in that skill.\n";
+            valid = false;
+        }
+        else valid = true;
     }
+
 
     // Assign the chosen skill as proficient
     player->pcSkills[usrIn - 1].prof = true;
@@ -355,8 +357,8 @@ void chooseProficiency(sheet *player) {
     free(choices);
 }
 
-void checkProficiency(sheet *player) {
-    for (auto & pcSkill : player->pcSkills) {
+void checkProficiency(sheet *player, skill *skill) {
+    for (auto &pcSkill: player->pcSkills) {
         if (pcSkill.prof) {
             pcSkill.bonus += player->profBonus;
         }
@@ -367,8 +369,12 @@ void checkProficiency(sheet *player) {
 }
 
 void printSkills(sheet *player) {
-    for (auto &i: skArr) {
-        cout << i.name << ": " << i.bonus << "\n";
+    bool prof = false;
+    for (auto & pcSkill : player->pcSkills) {
+        if (pcSkill.prof) {
+            prof = true;
+        }
+        cout << pcSkill.name << ": " << pcSkill.bonus << "prof: " << prof << "\n";
     }
 }
 
